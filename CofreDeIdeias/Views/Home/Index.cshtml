@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                    url('https://images.unsplash.com/photo-1555066931-4365d14bab8c') center/cover no-repeat;
+    }
+
+    .hero {
+        min-height: 100vh;
+        color: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        overflow: hidden;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        color: #dee2e6;
+        max-width: 600px;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+
+    .btn-glow {
+        background-color: #007bff;
+        color: white;
+        font-size: 1.1rem;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out forwards;
+        animation-delay: 1s;
+    }
+
+    .btn-glow:hover {
+        background-color: #0056b3;
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
+        transform: scale(1.05);
+    }
+
+    @@keyframes fadeInUp {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .btn-glow {
+            font-size: 1rem;
+            padding: 0.6rem 1.5rem;
+        }
+    }
+</style>
+
+<div class="hero">
+    <h1>💡 Cofre de Ideias</h1>
+    <p>Armazene, lapide e transforme seus pensamentos em projetos incríveis.</p>
+    <a href="/Ideias/Index" class="btn-glow">Explorar Ideias</a>
+</div>

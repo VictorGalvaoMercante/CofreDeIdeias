@@ -1,0 +1,131 @@
+﻿@model IEnumerable<CofreDeIdeias.Models.Ideia>
+@{
+    ViewData["Title"] = "Minhas Ideias";
+}
+
+<style>
+    body{
+        background: linear-gradient(to bottom, #1e1e2f, #2c2c3e);
+
+    }
+    .page-wrapper {
+        padding: 2rem;
+        min-height: 100vh;
+        color: #f8f9fa;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .create-button {
+        display: block;
+        width: fit-content;
+        margin: 0 auto 2rem;
+        padding: 0.7rem 1.5rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(0,123,255,0.4);
+    }
+
+        .create-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+    .ideas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .idea-card {
+        background-color: #343a40;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .idea-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .idea-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+    .idea-meta {
+        font-size: 0.9rem;
+        color: #adb5bd;
+        margin-bottom: 1rem;
+    }
+
+    .idea-desc {
+        font-size: 1rem;
+        color: #dee2e6;
+        margin-bottom: 1rem;
+    }
+
+    .idea-actions a {
+        margin-right: 0.7rem;
+        text-decoration: none;
+        color: #61dafb;
+        transition: color 0.2s;
+    }
+
+        .idea-actions a:hover {
+            color: #ffffff;
+        }
+
+    @@media (max-width: 576px) {
+        .page-title
+
+    {
+        font-size: 1.8rem;
+    }
+
+    }
+</style>
+
+<div class="page-wrapper">
+    <h1 class="page-title">Minhas Ideias</h1>
+
+    <a class="create-button" asp-action="Create">+ Nova Ideia</a>
+
+    <div class="ideas-grid">
+        @foreach (var item in Model)
+        {
+            <div class="idea-card">
+                <div>
+                    <div class="idea-title">@item.Titulo</div>
+                    <div class="idea-meta">
+                        Categoria: @item.Categoria <br />
+                        Prioridade: @item.Prioridade <br />
+                        Criada em: @item.DataCriacao.ToShortDateString()
+                    </div>
+                    <div class="idea-desc">@item.Descricao</div>
+                </div>
+                <div class="idea-actions">
+                    <a asp-action="Edit" asp-route-id="@item.Id">✏️ Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">🔍 Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">🗑️ Excluir</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
