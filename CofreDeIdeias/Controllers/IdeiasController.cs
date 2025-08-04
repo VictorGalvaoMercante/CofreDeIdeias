@@ -20,10 +20,24 @@ namespace CofreDeIdeias.Controllers
         }
 
         // GET: Ideias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime? dataInicio, DateTime? dataFim)
         {
-            return View(await _context.Ideias.ToListAsync());
+            var query = _context.Ideias.AsQueryable();
+
+            if (dataInicio.HasValue)
+                query = query.Where(i => i.DataCriacao >= dataInicio.Value);
+
+            if (dataFim.HasValue)
+                query = query.Where(i => i.DataCriacao <= dataFim.Value);
+
+            ViewData["DataInicio"] = dataInicio?.ToString("yyyy-MM-dd") ?? "";
+            ViewData["DataFim"] = dataFim?.ToString("yyyy-MM-dd") ?? "";
+
+            var listaFiltrada = await query.ToListAsync();
+
+            return View(listaFiltrada);
         }
+
 
         // GET: Ideias/Details/5
         public async Task<IActionResult> Details(int? id)

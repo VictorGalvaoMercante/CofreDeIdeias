@@ -1,64 +1,138 @@
 ﻿@model CofreDeIdeias.Models.Ideia
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Ideia";
 }
 
-<h1>Edit</h1>
+<style>
+    .form-wrapper {
+        max-width: 600px;
+        margin: 4rem auto;
+        background-color: #2c2c3e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        color: #f8f9fa;
+    }
 
-<h4>Ideia</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Categoria" class="control-label"></label>
-                <input asp-for="Categoria" class="form-control" />
-                <span asp-validation-for="Categoria" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prioridade" class="control-label"></label>
-                <input asp-for="Prioridade" class="form-control" />
-                <span asp-validation-for="Prioridade" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Confidencial" /> @Html.DisplayNameFor(model => model.Confidencial)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Favorita" /> @Html.DisplayNameFor(model => model.Favorita)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataCriacao" class="control-label"></label>
-                <input asp-for="DataCriacao" class="form-control" />
-                <span asp-validation-for="DataCriacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    .form-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    .form-group label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #495057;
+        background-color: #3a3a4a;
+        color: #f8f9fa;
+        margin-bottom: 1rem;
+        transition: border 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            background-color: #454558;
+        }
+
+    .form-check {
+        margin-bottom: 1rem;
+    }
+
+    .form-check-label {
+        cursor: pointer;
+    }
+
+    .btn-submit {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: background 0.3s ease, transform 0.2s;
+    }
+
+        .btn-submit:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #61dafb;
+        text-decoration: none;
+    }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+</style>
+
+<div class="form-wrapper">
+    <h2 class="form-title">Editar Ideia</h2>
+
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <label asp-for="Titulo"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+
+        <label asp-for="Descricao"></label>
+        <input asp-for="Descricao" class="form-control" />
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+
+        <label asp-for="Categoria"></label>
+        <input asp-for="Categoria" class="form-control" />
+        <span asp-validation-for="Categoria" class="text-danger"></span>
+
+        <label asp-for="Prioridade"></label>
+        <input asp-for="Prioridade" class="form-control" />
+        <span asp-validation-for="Prioridade" class="text-danger"></span>
+
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Confidencial" />
+                @Html.DisplayNameFor(model => model.Confidencial)
+            </label>
+        </div>
+
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Favorita" />
+                @Html.DisplayNameFor(model => model.Favorita)
+            </label>
+        </div>
+
+        <label asp-for="DataCriacao"></label>
+        <input asp-for="DataCriacao" class="form-control" />
+        <span asp-validation-for="DataCriacao" class="text-danger"></span>
+
+        <button type="submit" class="btn-submit">Salvar Alterações</button>
+    </form>
+
+    <a asp-action="Index" class="back-link">← Voltar para lista</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

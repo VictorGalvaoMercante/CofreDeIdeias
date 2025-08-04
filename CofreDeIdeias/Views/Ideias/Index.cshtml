@@ -1,13 +1,23 @@
-﻿@model IEnumerable<CofreDeIdeias.Models.Ideia>
+﻿@using Azure.Core
+@model IEnumerable<CofreDeIdeias.Models.Ideia>
 @{
     ViewData["Title"] = "Minhas Ideias";
+
+
+    var dataInicioValor = ViewData["DataInicio"] as string ?? "";
+    var dataFimValor = ViewData["DataFim"] as string ?? "";
+
+
 }
 
-<style>
-    body{
-        background: linear-gradient(to bottom, #1e1e2f, #2c2c3e);
 
+
+
+<style>
+    body {
+        background: linear-gradient(to bottom, #1e1e2f, #2c2c3e);
     }
+
     .page-wrapper {
         padding: 2rem;
         min-height: 100vh;
@@ -93,17 +103,31 @@
         }
 
     @@media (max-width: 576px) {
-        .page-title
-
-    {
-        font-size: 1.8rem;
-    }
-
+        .page-title {
+            font-size: 1.8rem;
+        }
     }
 </style>
 
 <div class="page-wrapper">
     <h1 class="page-title">Minhas Ideias</h1>
+    <form method="get" class="filter-form" style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; color: #adb5bd; font-weight: 600;">
+            <label for="dataInicio">Data de Início</label>
+            <input type="date" id="dataInicio" name="dataInicio" value="@dataInicioValor" style="padding: 0.4rem 0.6rem; border-radius: 6px; border: none; background: #495057; color: #f8f9fa;" />
+        </div>
+        <div style="display: flex; flex-direction: column; color: #adb5bd; font-weight: 600;">
+            <label for="dataFim">Data Final</label>
+            <input type="date" id="dataFim" name="dataFim" value="@dataFimValor" style="padding: 0.4rem 0.6rem; border-radius: 6px; border: none; background: #495057; color: #f8f9fa;" />
+        </div>
+        <button type="submit" style="background: #007bff; border: none; color: white; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 600; cursor: pointer; box-shadow: 0 0 8px rgba(0,123,255,0.5); transition: background 0.3s;">
+            Filtrar
+        </button>
+        <a asp-action="Index" style="background: #6c757d; color: white; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 8px rgba(108,117,125,0.5); transition: background 0.3s;">
+            Limpar
+        </a>
+    </form>
+
 
     <a class="create-button" asp-action="Create">+ Nova Ideia</a>
 
